@@ -1,0 +1,135 @@
+﻿
+@model UsmFicheroWeb.Usuarios
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Editar Usuario";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Usuarios</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rut)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Rut, new { @*disabled = "disabled",*@ @readonly = "readonly" }) 
+            @Html.ValidationMessageFor(model => model.Rut)
+            @*@Html.TextBoxFor(model => model.Dv, new { disabled = "disabled", @readonly = "readonly", style = "width:50px;" })
+             @Html.ValidationMessageFor(model => model.Dv)*@
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Dv)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Dv, new { @*disabled = "disabled",*@ @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Dv)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TipoUser)
+        </div>
+        <div class="editor-field">
+            @*@Html.TextBoxFor(model => model.TipoUser, new { disabled = "disabled", @readonly = "readonly" })*@
+            @Html.DropDownList("tipoUser", new List<SelectListItem>
+            {
+              new SelectListItem{ Text = "Alumno", Value = "1" },
+              new SelectListItem{ Text = "Profesor", Value = "2" },
+              new SelectListItem{ Text = "Administrador", Value = "3" }
+            }, new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.TipoUser)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Apellidos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Apellidos)
+            @Html.ValidationMessageFor(model => model.Apellidos)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fono)
+            @Html.ValidationMessageFor(model => model.Fono)
+        </div>
+
+        <div class="editor-label" style="display:block">
+            @Html.LabelFor(model => model.Contraseña)
+        </div>
+
+        <div class="editor-label" style="display:block">
+            @Html.DropDownList("Restable", new List<SelectListItem>
+            {
+              new SelectListItem{ Text = "No Restablecer", Value = "1" },
+              new SelectListItem{ Text = "Restablecer ", Value = "2" }
+            }, new { onchange = "getAlldata()" })
+        </div>
+
+        <div class="editor-field" style="display:none" >
+            @Html.EditorFor(model => model.Contraseña)
+            @Html.ValidationMessageFor(model => model.Contraseña)
+        </div>
+
+        <div class="editor-label" style="display:block">
+            @Html.LabelFor(model => model.IdCarrera)
+        </div>
+        <div class="editor-field" style="display:block">
+            @*@Html.EditorFor(model => model.IdCarrera)*@
+            @Html.DropDownList("IdCarrera", ViewBag.ListCarreras as SelectList, "Elija una carrera si es profesor o alumno. ",
+                                       new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.IdCarrera)
+        </div>
+
+        <div>
+            Cambiar foto del Usuario
+        </div>
+        <div>
+            <input type="file" name="file" />
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.IdNoticias)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.IdNoticias)
+            @Html.ValidationMessageFor(model => model.IdNoticias)
+        </div>
+
+        <p>
+            <input type="submit" value="Guardar" id="eli"/>
+        </p>
+    </fieldset>
+}
+
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/jscript">
+        $('#eli').click(function () {
+            alert('Si la contraseña fue Reestablecida se seteara a los digitos del Rut del usuario sin punto, guion ni DV.');
+
+        })
+
+    </script>
+}

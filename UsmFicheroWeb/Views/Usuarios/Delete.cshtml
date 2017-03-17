@@ -1,0 +1,95 @@
+﻿@model UsmFicheroWeb.Usuarios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<h3>¿Estas seguro de eliminar?</h3>
+<fieldset>
+    <legend>Usuarios</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Rut)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rut , new { @id = "rut"})
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Dv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TipoUser)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoUser)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellidos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contraseña)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contraseña)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdNoticias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdNoticias)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Borrar"  id="eli"/> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}
+
+@section Scripts{
+    <script type="text/jscript">
+        $('#eli').click(function () {
+            alert('En Caso que el "Usuario actual" sea el que se elimine NO se eliminara al Usuario.');
+            if (@ViewData["rutUsuario"] == $('#rut').val())
+                {
+                    alert('No se puede eliminar a si mismo !!!');
+                }
+
+    })
+    </script>  
+    }

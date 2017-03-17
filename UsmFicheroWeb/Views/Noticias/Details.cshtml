@@ -1,0 +1,50 @@
+﻿@model UsmFicheroWeb.Noticias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Noticias</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdNoticias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdNoticias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContenidoNoticia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContenidoNoticia)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodAsignatura)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodAsignatura)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuarios.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuarios.Dv)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

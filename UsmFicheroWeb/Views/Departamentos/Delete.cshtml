@@ -1,0 +1,42 @@
+﻿@model UsmFicheroWeb.Departamentos
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Eliminar Departamentos";
+}
+
+<h2>Eliminar Departamentos</h2>
+
+<h3>Ests seguro de eliminar el Departamento?</h3>
+<fieldset>
+    <legend>Departamentos</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdDepartamento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RutJefeDepto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RutJefeDepto)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NombreDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreDepartamento)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

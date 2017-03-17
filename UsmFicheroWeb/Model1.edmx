@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FicheroBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asignaturas">
+          <Key>
+            <PropertyRef Name="CodAsig" />
+          </Key>
+          <Property Name="CodAsig" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="IdCarrera" Type="tinyint" Nullable="false" />
+          <Property Name="RutJefeCarrera" Type="varchar" MaxLength="15" />
+          <Property Name="NombreCarrera" Type="varchar" MaxLength="30" />
+          <Property Name="IdDepartamento" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RutJefeDepto" Type="varchar" MaxLength="50" />
+          <Property Name="NombreDepartamento" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Edificios">
+          <Key>
+            <PropertyRef Name="CodEdificios" />
+          </Key>
+          <Property Name="CodEdificios" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CantidadSalas" Type="int" />
+          <Property Name="NumerosBaños" Type="int" />
+          <Property Name="Oficinas" Type="int" />
+        </EntityType>
+        <EntityType Name="Hora">
+          <Key>
+            <PropertyRef Name="CodHora" />
+          </Key>
+          <Property Name="CodHora" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoraInicio" Type="int" Nullable="false" />
+          <Property Name="HoraTermino" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="CodAsignatura" />
+            <PropertyRef Name="Modificado" />
+            <PropertyRef Name="Paralelo" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="CodHora" />
+          </Key>
+          <Property Name="CodAsignatura" Type="tinyint" Nullable="false" />
+          <Property Name="Modificado" Type="tinyint" Nullable="false" />
+          <Property Name="Paralelo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Dia" Type="tinyint" Nullable="false" />
+          <Property Name="CodHora" Type="tinyint" Nullable="false" />
+          <Property Name="CodHoraFinal" Type="int" />
+          <Property Name="CodSala" Type="tinyint" />
+          <Property Name="RutProfesor" Type="int" />
+          <Property Name="FechaModi" Type="date" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="IdNoticias" />
+          </Key>
+          <Property Name="IdNoticias" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContenidoNoticia" Type="varchar" MaxLength="50" />
+          <Property Name="CodAsignatura" Type="tinyint" />
+          <Property Name="IdCarrera" Type="tinyint" />
+          <Property Name="RutAutor" Type="int" />
+        </EntityType>
+        <EntityType Name="Salas">
+          <Key>
+            <PropertyRef Name="CodSala" />
+          </Key>
+          <Property Name="CodSala" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodEdificio" Type="varchar" MaxLength="50" />
+          <Property Name="MaxAlumnos" Type="int" />
+          <Property Name="NumeroSala" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsuarioAsignatura">
+          <Key>
+            <PropertyRef Name="RutUsuario" />
+            <PropertyRef Name="CodAsignatura" />
+          </Key>
+          <Property Name="RutUsuario" Type="int" Nullable="false" />
+          <Property Name="CodAsignatura" Type="tinyint" Nullable="false" />
+          <Property Name="Año" Type="int" />
+          <Property Name="Semestre" Type="tinyint" />
+          <Property Name="Estado" Type="varchar" MaxLength="1" />
+          <Property Name="Nota1" Type="int" />
+          <Property Name="Nota2" Type="int" />
+          <Property Name="Nota3" Type="int" />
+          <Property Name="Nota4" Type="int" />
+          <Property Name="Nota5" Type="int" />
+          <Property Name="Paralelo" Type="varchar" MaxLength="1" />
+          <Property Name="RutProfesor" Type="int" />
+        </EntityType>
+        <EntityType Name="UsuarioCarrera">
+          <Key>
+            <PropertyRef Name="Rut" />
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="Rut" Type="int" Nullable="false" />
+          <Property Name="IdCarrera" Type="tinyint" Nullable="false" />
+          <Property Name="TipoProfesor" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="int" Nullable="false" />
+          <Property Name="Dv" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="TipoUser" Type="tinyint" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="20" />
+          <Property Name="Fono" Type="varchar" MaxLength="13" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="20" />
+          <Property Name="IdCarrera" Type="tinyint" />
+          <Property Name="IdNoticias" Type="tinyint" />
+          <Property Name="HorarioAtencion" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Carreras_Departamentos">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Hora">
+          <End Role="Hora" Type="Self.Hora" Multiplicity="1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hora">
+              <PropertyRef Name="CodHora" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodHora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Salas">
+          <End Role="Salas" Type="Self.Salas" Multiplicity="0..1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salas">
+              <PropertyRef Name="CodSala" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="RutProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="RutAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salas_Edificios">
+          <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+          <End Role="Salas" Type="Self.Salas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edificios">
+              <PropertyRef Name="CodEdificios" />
+            </Principal>
+            <Dependent Role="Salas">
+              <PropertyRef Name="CodEdificio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAsignatura_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="1" />
+          <End Role="UsuarioAsignatura" Type="Self.UsuarioAsignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="UsuarioAsignatura">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAsignatura_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="UsuarioAsignatura" Type="Self.UsuarioAsignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="UsuarioAsignatura">
+              <PropertyRef Name="RutUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioCarrera_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="1" />
+          <End Role="UsuarioCarrera" Type="Self.UsuarioCarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="UsuarioCarrera">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioCarrera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="UsuarioCarrera" Type="Self.UsuarioCarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="UsuarioCarrera">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FicheroBDModelStoreContainer">
+          <EntitySet Name="Asignaturas" EntityType="Self.Asignaturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Edificios" EntityType="Self.Edificios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hora" EntityType="Self.Hora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salas" EntityType="Self.Salas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioAsignatura" EntityType="Self.UsuarioAsignatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioCarrera" EntityType="Self.UsuarioCarrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Carreras_Departamentos" Association="Self.FK_Carreras_Departamentos">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Asignaturas" Association="Self.FK_Horarios_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Hora" Association="Self.FK_Horarios_Hora">
+            <End Role="Hora" EntitySet="Hora" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Salas" Association="Self.FK_Horarios_Salas">
+            <End Role="Salas" EntitySet="Salas" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Usuarios" Association="Self.FK_Horarios_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Asignaturas" Association="Self.FK_Noticias_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Carreras" Association="Self.FK_Noticias_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Usuarios" Association="Self.FK_Noticias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salas_Edificios" Association="Self.FK_Salas_Edificios">
+            <End Role="Edificios" EntitySet="Edificios" />
+            <End Role="Salas" EntitySet="Salas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAsignatura_Asignaturas" Association="Self.FK_UsuarioAsignatura_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="UsuarioAsignatura" EntitySet="UsuarioAsignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAsignatura_Usuarios" Association="Self.FK_UsuarioAsignatura_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuarioAsignatura" EntitySet="UsuarioAsignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioCarrera_Carreras" Association="Self.FK_UsuarioCarrera_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="UsuarioCarrera" EntitySet="UsuarioCarrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioCarrera_Usuarios" Association="Self.FK_UsuarioCarrera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuarioCarrera" EntitySet="UsuarioCarrera" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FicheroBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asignaturas">
+          <Key>
+            <PropertyRef Name="CodAsig" />
+          </Key>
+          <Property Name="CodAsig" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK_Horarios_Asignaturas" FromRole="Asignaturas" ToRole="Horarios" />
+          <NavigationProperty Name="Noticias" Relationship="Self.FK_Noticias_Asignaturas" FromRole="Asignaturas" ToRole="Noticias" />
+          <NavigationProperty Name="UsuarioAsignatura" Relationship="Self.FK_UsuarioAsignatura_Asignaturas" FromRole="Asignaturas" ToRole="UsuarioAsignatura" />
+        </EntityType>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="IdCarrera" Type="Byte" Nullable="false" />
+          <Property Name="RutJefeCarrera" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NombreCarrera" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdDepartamento" Type="Byte" />
+          <NavigationProperty Name="Departamentos" Relationship="Self.FK_Carreras_Departamentos" FromRole="Carreras" ToRole="Departamentos" />
+          <NavigationProperty Name="Noticias" Relationship="Self.FK_Noticias_Carreras" FromRole="Carreras" ToRole="Noticias" />
+          <NavigationProperty Name="UsuarioCarrera" Relationship="Self.FK_UsuarioCarrera_Carreras" FromRole="Carreras" ToRole="UsuarioCarrera" />
+        </EntityType>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="IdDepartamento" />
+          </Key>
+          <Property Name="IdDepartamento" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RutJefeDepto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreDepartamento" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Carreras_Departamentos" FromRole="Departamentos" ToRole="Carreras" />
+        </EntityType>
+        <EntityType Name="Edificios">
+          <Key>
+            <PropertyRef Name="CodEdificios" />
+          </Key>
+          <Property Name="CodEdificios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CantidadSalas" Type="Int32" />
+          <Property Name="NumerosBaños" Type="Int32" />
+          <Property Name="Oficinas" Type="Int32" />
+          <NavigationProperty Name="Salas" Relationship="Self.FK_Salas_Edificios" FromRole="Edificios" ToRole="Salas" />
+        </EntityType>
+        <EntityType Name="Hora">
+          <Key>
+            <PropertyRef Name="CodHora" />
+          </Key>
+          <Property Name="CodHora" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoraInicio" Type="Int32" Nullable="false" />
+          <Property Name="HoraTermino" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK_Horarios_Hora" FromRole="Hora" ToRole="Horarios" />
+        </EntityType>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="CodAsignatura" />
+            <PropertyRef Name="Modificado" />
+            <PropertyRef Name="Paralelo" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="CodHora" />
+          </Key>
+          <Property Name="CodAsignatura" Type="Byte" Nullable="false" />
+          <Property Name="Modificado" Type="Byte" Nullable="false" />
+          <Property Name="Paralelo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dia" Type="Byte" Nullable="false" />
+          <Property Name="CodHora" Type="Byte" Nullable="false" />
+          <Property Name="CodHoraFinal" Type="Int32" />
+          <Property Name="CodSala" Type="Byte" />
+          <Property Name="RutProfesor" Type="Int32" />
+          <Property Name="FechaModi" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Asignaturas" Relationship="Self.FK_Horarios_Asignaturas" FromRole="Horarios" ToRole="Asignaturas" />
+          <NavigationProperty Name="Hora" Relationship="Self.FK_Horarios_Hora" FromRole="Horarios" ToRole="Hora" />
+          <NavigationProperty Name="Salas" Relationship="Self.FK_Horarios_Salas" FromRole="Horarios" ToRole="Salas" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Horarios_Usuarios" FromRole="Horarios" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="IdNoticias" />
+          </Key>
+          <Property Name="IdNoticias" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContenidoNoticia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodAsignatura" Type="Byte" />
+          <Property Name="IdCarrera" Type="Byte" />
+          <Property Name="RutAutor" Type="Int32" />
+          <NavigationProperty Name="Asignaturas" Relationship="Self.FK_Noticias_Asignaturas" FromRole="Noticias" ToRole="Asignaturas" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Noticias_Carreras" FromRole="Noticias" ToRole="Carreras" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Noticias_Usuarios" FromRole="Noticias" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Salas">
+          <Key>
+            <PropertyRef Name="CodSala" />
+          </Key>
+          <Property Name="CodSala" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodEdificio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaxAlumnos" Type="Int32" />
+          <Property Name="NumeroSala" Type="Int32" />
+          <NavigationProperty Name="Edificios" Relationship="Self.FK_Salas_Edificios" FromRole="Salas" ToRole="Edificios" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK_Horarios_Salas" FromRole="Salas" ToRole="Horarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UsuarioAsignatura">
+          <Key>
+            <PropertyRef Name="RutUsuario" />
+            <PropertyRef Name="CodAsignatura" />
+          </Key>
+          <Property Name="RutUsuario" Type="Int32" Nullable="false" />
+          <Property Name="CodAsignatura" Type="Byte" Nullable="false" />
+          <Property Name="Año" Type="Int32" />
+          <Property Name="Semestre" Type="Byte" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Nota1" Type="Int32" />
+          <Property Name="Nota2" Type="Int32" />
+          <Property Name="Nota3" Type="Int32" />
+          <Property Name="Nota4" Type="Int32" />
+          <Property Name="Nota5" Type="Int32" />
+          <Property Name="Paralelo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="RutProfesor" Type="Int32" />
+          <NavigationProperty Name="Asignaturas" Relationship="Self.FK_UsuarioAsignatura_Asignaturas" FromRole="UsuarioAsignatura" ToRole="Asignaturas" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_UsuarioAsignatura_Usuarios" FromRole="UsuarioAsignatura" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="UsuarioCarrera">
+          <Key>
+            <PropertyRef Name="Rut" />
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="Rut" Type="Int32" Nullable="false" />
+          <Property Name="IdCarrera" Type="Byte" Nullable="false" />
+          <Property Name="TipoProfesor" Type="Byte" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_UsuarioCarrera_Carreras" FromRole="UsuarioCarrera" ToRole="Carreras" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_UsuarioCarrera_Usuarios" FromRole="UsuarioCarrera" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="Int32" Nullable="false" />
+          <Property Name="Dv" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoUser" Type="Byte" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdCarrera" Type="Byte" />
+          <Property Name="IdNoticias" Type="Byte" />
+          <Property Name="HorarioAtencion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Horarios" Relationship="Self.FK_Horarios_Usuarios" FromRole="Usuarios" ToRole="Horarios" />
+          <NavigationProperty Name="Noticias" Relationship="Self.FK_Noticias_Usuarios" FromRole="Usuarios" ToRole="Noticias" />
+          <NavigationProperty Name="UsuarioAsignatura" Relationship="Self.FK_UsuarioAsignatura_Usuarios" FromRole="Usuarios" ToRole="UsuarioAsignatura" />
+          <NavigationProperty Name="UsuarioCarrera" Relationship="Self.FK_UsuarioCarrera_Usuarios" FromRole="Usuarios" ToRole="UsuarioCarrera" />
+        </EntityType>
+        <Association Name="FK_Horarios_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAsignatura_Asignaturas">
+          <End Role="Asignaturas" Type="Self.Asignaturas" Multiplicity="1" />
+          <End Role="UsuarioAsignatura" Type="Self.UsuarioAsignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asignaturas">
+              <PropertyRef Name="CodAsig" />
+            </Principal>
+            <Dependent Role="UsuarioAsignatura">
+              <PropertyRef Name="CodAsignatura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carreras_Departamentos">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="IdDepartamento" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioCarrera_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="1" />
+          <End Role="UsuarioCarrera" Type="Self.UsuarioCarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="UsuarioCarrera">
+              <PropertyRef Name="IdCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salas_Edificios">
+          <End Role="Edificios" Type="Self.Edificios" Multiplicity="0..1" />
+          <End Role="Salas" Type="Self.Salas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Edificios">
+              <PropertyRef Name="CodEdificios" />
+            </Principal>
+            <Dependent Role="Salas">
+              <PropertyRef Name="CodEdificio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Hora">
+          <End Role="Hora" Type="Self.Hora" Multiplicity="1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hora">
+              <PropertyRef Name="CodHora" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodHora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Salas">
+          <End Role="Salas" Type="Self.Salas" Multiplicity="0..1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salas">
+              <PropertyRef Name="CodSala" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="CodSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="RutProfesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Noticias_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Noticias" Type="Self.Noticias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Noticias">
+              <PropertyRef Name="RutAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioAsignatura_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="UsuarioAsignatura" Type="Self.UsuarioAsignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="UsuarioAsignatura">
+              <PropertyRef Name="RutUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioCarrera_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="UsuarioCarrera" Type="Self.UsuarioCarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="UsuarioCarrera">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FicheroBDEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asignaturas" EntityType="Self.Asignaturas" />
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" />
+          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" />
+          <EntitySet Name="Edificios" EntityType="Self.Edificios" />
+          <EntitySet Name="Hora" EntityType="Self.Hora" />
+          <EntitySet Name="Horarios" EntityType="Self.Horarios" />
+          <EntitySet Name="Noticias" EntityType="Self.Noticias" />
+          <EntitySet Name="Salas" EntityType="Self.Salas" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UsuarioAsignatura" EntityType="Self.UsuarioAsignatura" />
+          <EntitySet Name="UsuarioCarrera" EntityType="Self.UsuarioCarrera" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_Horarios_Asignaturas" Association="Self.FK_Horarios_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Asignaturas" Association="Self.FK_Noticias_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAsignatura_Asignaturas" Association="Self.FK_UsuarioAsignatura_Asignaturas">
+            <End Role="Asignaturas" EntitySet="Asignaturas" />
+            <End Role="UsuarioAsignatura" EntitySet="UsuarioAsignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carreras_Departamentos" Association="Self.FK_Carreras_Departamentos">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Carreras" Association="Self.FK_Noticias_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioCarrera_Carreras" Association="Self.FK_UsuarioCarrera_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="UsuarioCarrera" EntitySet="UsuarioCarrera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salas_Edificios" Association="Self.FK_Salas_Edificios">
+            <End Role="Edificios" EntitySet="Edificios" />
+            <End Role="Salas" EntitySet="Salas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Hora" Association="Self.FK_Horarios_Hora">
+            <End Role="Hora" EntitySet="Hora" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Salas" Association="Self.FK_Horarios_Salas">
+            <End Role="Salas" EntitySet="Salas" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Usuarios" Association="Self.FK_Horarios_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Noticias_Usuarios" Association="Self.FK_Noticias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Noticias" EntitySet="Noticias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioAsignatura_Usuarios" Association="Self.FK_UsuarioAsignatura_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuarioAsignatura" EntitySet="UsuarioAsignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioCarrera_Usuarios" Association="Self.FK_UsuarioCarrera_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuarioCarrera" EntitySet="UsuarioCarrera" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FicheroBDModelStoreContainer" CdmEntityContainer="FicheroBDEntities1">
+          <EntitySetMapping Name="Asignaturas">
+            <EntityTypeMapping TypeName="FicheroBDModel.Asignaturas">
+              <MappingFragment StoreEntitySet="Asignaturas">
+                <ScalarProperty Name="CodAsig" ColumnName="CodAsig" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="FicheroBDModel.Carreras">
+              <MappingFragment StoreEntitySet="Carreras">
+                <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+                <ScalarProperty Name="RutJefeCarrera" ColumnName="RutJefeCarrera" />
+                <ScalarProperty Name="NombreCarrera" ColumnName="NombreCarrera" />
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamentos">
+            <EntityTypeMapping TypeName="FicheroBDModel.Departamentos">
+              <MappingFragment StoreEntitySet="Departamentos">
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
+                <ScalarProperty Name="RutJefeDepto" ColumnName="RutJefeDepto" />
+                <ScalarProperty Name="NombreDepartamento" ColumnName="NombreDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Edificios">
+            <EntityTypeMapping TypeName="FicheroBDModel.Edificios">
+              <MappingFragment StoreEntitySet="Edificios">
+                <ScalarProperty Name="CodEdificios" ColumnName="CodEdificios" />
+                <ScalarProperty Name="CantidadSalas" ColumnName="CantidadSalas" />
+                <ScalarProperty Name="NumerosBaños" ColumnName="NumerosBaños" />
+                <ScalarProperty Name="Oficinas" ColumnName="Oficinas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hora">
+            <EntityTypeMapping TypeName="FicheroBDModel.Hora">
+              <MappingFragment StoreEntitySet="Hora">
+                <ScalarProperty Name="CodHora" ColumnName="CodHora" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="HoraTermino" ColumnName="HoraTermino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horarios">
+            <EntityTypeMapping TypeName="FicheroBDModel.Horarios">
+              <MappingFragment StoreEntitySet="Horarios">
+                <ScalarProperty Name="CodAsignatura" ColumnName="CodAsignatura" />
+                <ScalarProperty Name="Modificado" ColumnName="Modificado" />
+                <ScalarProperty Name="Paralelo" ColumnName="Paralelo" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="CodHora" ColumnName="CodHora" />
+                <ScalarProperty Name="CodHoraFinal" ColumnName="CodHoraFinal" />
+                <ScalarProperty Name="CodSala" ColumnName="CodSala" />
+                <ScalarProperty Name="RutProfesor" ColumnName="RutProfesor" />
+                <ScalarProperty Name="FechaModi" ColumnName="FechaModi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Noticias">
+            <EntityTypeMapping TypeName="FicheroBDModel.Noticias">
+              <MappingFragment StoreEntitySet="Noticias">
+                <ScalarProperty Name="IdNoticias" ColumnName="IdNoticias" />
+                <ScalarProperty Name="ContenidoNoticia" ColumnName="ContenidoNoticia" />
+                <ScalarProperty Name="CodAsignatura" ColumnName="CodAsignatura" />
+                <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+                <ScalarProperty Name="RutAutor" ColumnName="RutAutor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salas">
+            <EntityTypeMapping TypeName="FicheroBDModel.Salas">
+              <MappingFragment StoreEntitySet="Salas">
+                <ScalarProperty Name="CodSala" ColumnName="CodSala" />
+                <ScalarProperty Name="CodEdificio" ColumnName="CodEdificio" />
+                <ScalarProperty Name="MaxAlumnos" ColumnName="MaxAlumnos" />
+                <ScalarProperty Name="NumeroSala" ColumnName="NumeroSala" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FicheroBDModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioAsignatura">
+            <EntityTypeMapping TypeName="FicheroBDModel.UsuarioAsignatura">
+              <MappingFragment StoreEntitySet="UsuarioAsignatura">
+                <ScalarProperty Name="RutUsuario" ColumnName="RutUsuario" />
+                <ScalarProperty Name="CodAsignatura" ColumnName="CodAsignatura" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Semestre" ColumnName="Semestre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nota1" ColumnName="Nota1" />
+                <ScalarProperty Name="Nota2" ColumnName="Nota2" />
+                <ScalarProperty Name="Nota3" ColumnName="Nota3" />
+                <ScalarProperty Name="Nota4" ColumnName="Nota4" />
+                <ScalarProperty Name="Nota5" ColumnName="Nota5" />
+                <ScalarProperty Name="Paralelo" ColumnName="Paralelo" />
+                <ScalarProperty Name="RutProfesor" ColumnName="RutProfesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioCarrera">
+            <EntityTypeMapping TypeName="FicheroBDModel.UsuarioCarrera">
+              <MappingFragment StoreEntitySet="UsuarioCarrera">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+                <ScalarProperty Name="TipoProfesor" ColumnName="TipoProfesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="FicheroBDModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Dv" ColumnName="Dv" />
+                <ScalarProperty Name="TipoUser" ColumnName="TipoUser" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Fono" ColumnName="Fono" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+                <ScalarProperty Name="IdNoticias" ColumnName="IdNoticias" />
+                <ScalarProperty Name="HorarioAtencion" ColumnName="HorarioAtencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,56 @@
+﻿@model UsmFicheroWeb.Noticias
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Noticias: </h2>
+
+<h3>¿Estas Seguro que quieres Elimninarlo?</h3>
+<fieldset>
+    <legend>Noticias</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdNoticias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdNoticias)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContenidoNoticia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContenidoNoticia)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodAsignatura)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodAsignatura)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuarios.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuarios.Dv)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p class="btn btn-danger">
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

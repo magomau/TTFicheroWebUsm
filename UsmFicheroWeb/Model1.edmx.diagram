@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e6ced2f4ab24370822b01c41c0d098f" Name="Diagram1">
+        <EntityTypeShape EntityType="FicheroBDModel.Asignaturas" Width="1.5" PointX="3.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Carreras" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Departamentos" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Edificios" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Hora" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Horarios" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Noticias" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Salas" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.UsuarioAsignatura" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.UsuarioCarrera" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="FicheroBDModel.Usuarios" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <AssociationConnector Association="FicheroBDModel.FK_Horarios_Asignaturas" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Noticias_Asignaturas" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_UsuarioAsignatura_Asignaturas" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Carreras_Departamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Noticias_Carreras" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_UsuarioCarrera_Carreras" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Salas_Edificios" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Horarios_Hora" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Horarios_Salas" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Horarios_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_Noticias_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_UsuarioAsignatura_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="FicheroBDModel.FK_UsuarioCarrera_Usuarios" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

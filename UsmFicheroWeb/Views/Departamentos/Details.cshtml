@@ -1,0 +1,36 @@
+﻿@model UsmFicheroWeb.Departamentos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Departamentos</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdDepartamento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RutJefeDepto)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RutJefeDepto)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NombreDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NombreDepartamento)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,114 @@
+﻿@model UsmFicheroWeb.Horarios
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Crear Horario";
+}
+
+<h2>Crear Horario</h2>
+
+@using (Html.BeginForm("CreateProfe", "Profesor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Horarios</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodAsignatura, "Asignaturas")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CodAsignatura", String.Empty)
+            @Html.ValidationMessageFor(model => model.CodAsignatura)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Modificado)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.Modificado)*@
+            @Html.DropDownList("Modificado", new List<SelectListItem>
+              {
+              new SelectListItem{ Text = "Nuevo", Value = "0" },
+              new SelectListItem{ Text = "No", Value = "0" },
+              new SelectListItem{ Text = "Si", Value = "1" },
+            }, new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.Modificado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodHora, "Hora")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CodHora", String.Empty)
+            @Html.ValidationMessageFor(model => model.CodHora)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Dia)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.Dia)*@
+            @Html.DropDownList("Dia", new List<SelectListItem>
+              {
+              new SelectListItem{ Text = "Lunes", Value = "1" },
+              new SelectListItem{ Text = "Martes", Value = "2" },
+              new SelectListItem{ Text = "Miercoles", Value = "3" },
+              new SelectListItem{ Text = "Jueves", Value = "4" },
+              new SelectListItem{ Text = "Viernes", Value = "5" },
+
+            }, new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.Dia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodSala, "Salas")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CodSala", String.Empty)
+            @Html.ValidationMessageFor(model => model.CodSala)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RutProfesor, "Profesor que imparte:")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RutProfesor", String.Empty)
+            @Html.ValidationMessageFor(model => model.RutProfesor)
+        </div>
+
+        @*<div class="editor-label">
+                @Html.LabelFor(model => model.FechaModi)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FechaModi)
+                @Html.ValidationMessageFor(model => model.FechaModi)
+            </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Paralelo)
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.Paralelo)*@
+            @Html.DropDownList("Paralelo", new List<SelectListItem>
+              {
+              new SelectListItem{ Text = "A", Value = "A" },
+              new SelectListItem{ Text = "B", Value = "B" },
+
+            }, new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.Paralelo)
+        </div>
+
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+
+
+
+    <div class="btn btn-danger">
+        @Html.ActionLink("Regresar", "PrivadoProfe", "Login")
+    </div>

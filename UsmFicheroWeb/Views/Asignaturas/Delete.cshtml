@@ -1,0 +1,35 @@
+﻿@model UsmFicheroWeb.Asignaturas
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Elimina Asignaturas";
+}
+
+<h2>Elimina Asignaturas</h2>
+
+<h3>Estas segura de eliminar la asignatura?</h3>
+<fieldset>
+    <legend>Asignaturas</legend>
+
+    <div class="display-label" style="display:none">
+         @Html.DisplayNameFor(model => model.CodAsig)
+    </div>
+    <div class="display-field"style="display:none">
+        @Html.DisplayFor(model => model.CodAsig)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

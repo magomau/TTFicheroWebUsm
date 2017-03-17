@@ -1,0 +1,71 @@
+﻿@model UsmFicheroWeb.Horarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Horarios</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Asignaturas.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Asignaturas.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Modificado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Modificado)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Hora.CodHora)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Hora.CodHora)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Dia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Dia)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Salas.CodSala)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salas.CodSala)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Usuarios.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuarios.Dv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FechaModi)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaModi)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Paralelo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Paralelo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

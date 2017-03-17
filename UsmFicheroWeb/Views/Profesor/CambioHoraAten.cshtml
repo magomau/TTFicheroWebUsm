@@ -1,0 +1,27 @@
+﻿@model UsmFicheroWeb.Usuarios
+
+@{
+    ViewBag.Title = "CambioHoraAten";
+}
+
+<h2>CambioHoraAten</h2>
+
+
+@using (Html.BeginForm("Create", "Usuarios"))
+{
+    <fieldset>
+        <div class="editor-label">
+            Escriba su horario: (ej. Lunes - Viernes 08:00 – 20:30, Sabado 08:00 – 13:00)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HorarioAtencion)
+            @Html.ValidationMessageFor(model => model.HorarioAtencion)
+        </div>
+
+        <p>
+            <input type="submit" value="Cambiar" />
+        </p>
+
+    </fieldset>
+
+        }

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<UsmFicheroWeb.Usuarios>
+@{
+    ViewBag.Title = "HorarioAtencion";
+}@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+<header>
+    <div class="wrappr">
+
+        <div class="UsuarioActual">
+            Profesor:  <b>@ViewData["UsuarioActualNombre"]</b>
+        </div>
+        <div>
+            <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li id="m1">@Html.ActionLink("Cerrar Sesion", "Index", "Login")</li>
+                    <li id="m3">@Html.ActionLink("Perfil General", "GeneralProfe", "Login")</li>
+                    <li id="m2">@Html.ActionLink("Cambiar Contraseña", "contrasenaprof", "Login")</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h2>HorarioAtencion</h2>
+
+
+<div>
+    Horario: <b>@ViewData["atenHora"]</b>
+</div>
+<div>
+    @Html.ActionLink("Cambiar Horario", "CambioHoraAten")
+</div>
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "PrivadoProfe", "Login")
+</div>
+
+<style>
+    .fila {
+        overflow: hidden;
+        margin-top: 0.75em;
+    }
+
+    .UsuarioActual {
+        float: right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+
+    .ImagenPerfil {
+        float: right;
+        padding-top: 0px;
+        padding-right: 50px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .celda {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 20px;
+        float: left;
+        border: solid;
+    }
+
+    .celda2 {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 20px;
+        float: left;
+        border: solid;
+        text-align: center;
+    }
+
+    .wrappr {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+</style>

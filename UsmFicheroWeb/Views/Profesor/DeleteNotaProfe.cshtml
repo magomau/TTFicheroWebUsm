@@ -1,0 +1,100 @@
+﻿@model UsmFicheroWeb.UsuarioAsignatura
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Eliminar notas y asignaturas del Usuario.";
+}
+
+<h2>Eliminar notas y asignaturas del Usuario.</h2>
+
+<h3>Estas seguro de eliminar?</h3>
+<fieldset>
+    <legend>UsuarioAsignatura</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Usuarios.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuarios.Dv)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Asignaturas.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Asignaturas.Nombre)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Año)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Año)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Semestre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Semestre)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Estado)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estado)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Nota1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nota1)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Nota2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nota2)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Nota3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nota3)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Nota4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nota4)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Nota5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nota5)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Paralelo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Paralelo)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p class="btn btn-danger">
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "PrivadoProfe", "Login")
+    </p>
+}
+

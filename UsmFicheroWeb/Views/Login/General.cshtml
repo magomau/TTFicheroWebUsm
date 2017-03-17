@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "Perfil General";
+}
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@model IEnumerable<UsmFicheroWeb.Noticias>
+
+<header>
+    <div class="wrappr">
+
+        <div class="UsuarioActual">
+            Alumno:  <b>@ViewData["UsuarioActualNombre"]</b>
+        </div>
+        <div class="CarreraActual">
+            Carrera: <b>@ViewData["CarreraDelUsuario"]</b>
+        </div>
+
+        <div>
+            <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+        </div>
+       
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li id="m1">@Html.ActionLink("Cerrar Sesion", "Index", "Login")</li>
+                    <li id="m2">@Html.ActionLink("Perfil Privado", "Privado", "Login")</li>
+                    <li id="m3">@Html.ActionLink("Cambiar Contraseña", "contrasena", "Login")</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h2>Noticias</h2>
+
+<div class="ImagenPerfil">
+    <img class="img-rounded" src="@Url.Content(String.Format("~/Fotos/{0}.jpg",ViewData["DirFoto"] )) " width="100px" height="100px" alt="imgf" />
+    @*<img src="@Url.Content("~/Fotos/MauricioCarpentier.jpg")" width="150px" height="200px" alt="imgf" />*@
+</div>
+
+<style>
+    .UsuarioActual {
+        float:right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+
+    .CarreraActual {
+        float:right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 10px;
+        padding-left: 80px;
+
+    
+    }
+
+    .fila {
+        overflow: hidden;
+    }
+
+    .celda {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: auto;
+        float: left;
+        border: solid;
+        background-color: #E0E0D8;
+    }
+
+    .celda2 {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: auto;
+        float: left;
+        border: solid;
+        text-align: center;
+        background-color: #E0E0D8;
+    }
+
+    .wrappr {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+    .ImagenPerfil {
+         float:right;
+         padding-top: 0px;
+        padding-right: 50px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+</style>
+
+
+@foreach (var item in Model)
+{
+    <div class="fila" style="margin-top: 0.75em;">
+        <div class="celda">
+            Autor: @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+        </div>
+        <div class="celda" style="width:200px">
+            @Html.DisplayFor(modelItem => item.ContenidoNoticia)
+        </div>
+    </div>
+    <div class="fila">
+        <div class="celda2">
+            Asignatura: @*@Html.DisplayFor(modelItem => item.CodAsignatura)-*@@Html.DisplayFor(modelItem => item.Asignaturas.Nombre)
+        </div>
+        <div class="celda2">
+            Carrera: @*@Html.DisplayFor(modelItem => item.IdCarrera)-*@@Html.DisplayFor(modelItem => item.Carreras.NombreCarrera)
+        </div>
+
+    </div>
+}
+
+

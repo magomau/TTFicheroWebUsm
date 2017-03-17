@@ -1,0 +1,150 @@
+﻿@model IEnumerable<UsmFicheroWeb.Horarios>
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Administracion Horarios";
+}
+<header>
+    <div class="wrappr">
+        <div class="UsuarioActual">
+            Administrador:  <b>@ViewData["UsuarioActualNombre"]</b>
+        </div>
+        <div>
+            <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li id="m1">@Html.ActionLink("Cerrar Sesion", "Index", "Login")</li>
+                    @*<li id="m2">@Html.ActionLink("Perfil Privado", "Privado", "Login")</li>
+                        <li id="m3">@Html.ActionLink("Perfil General", "General", "Login")</li>*@
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h2>Horarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Horario", "Create")
+</p>
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Asignaturas.CodAsig)
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Asignaturas.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modificado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hora.CodHora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salas.CodSala)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.Rut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paralelo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asignaturas.CodAsig)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asignaturas.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modificado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hora.CodHora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salas.CodSala)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.Rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaModi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paralelo)
+        </td>
+        <td>
+            @Html.ActionLink("Modificar", "Edit", new { idd = item.Dia, idh = item.CodHora, ida = item.CodAsignatura, idm = item.Modificado, idp = item.Paralelo}) |
+            @*@Html.ActionLink("Details", "Details", new { idd = item.Dia, idh = item.CodHora, ida = item.CodAsignatura, idm = item.Modificado, idp = item.Paralelo }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { idd = item.Dia, idh = item.CodHora, ida = item.CodAsignatura, idm = item.Modificado, idp = item.Paralelo })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index", "Adminstrador")
+</p>
+
+<style>
+    .fila {
+        overflow: hidden;
+    }
+
+    .UsuarioActual {
+        float: right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+
+    .celda {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 50px;
+        float: left;
+        border: solid;
+    }
+
+    .celda2 {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 20px;
+        float: left;
+        border: solid;
+        text-align: center;
+    }
+
+    .wrappr {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+</style>

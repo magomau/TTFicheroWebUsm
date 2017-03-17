@@ -1,0 +1,162 @@
+﻿@model IEnumerable<UsmFicheroWeb.UsuarioAsignatura>
+@{
+    ViewBag.Title = "Perfil Privado";
+}
+
+<header>
+    <div class="wrappr">
+
+        <div class="UsuarioActual">
+            Alumno:  <b>@ViewData["UsuarioActualNombre"]</b>
+        </div>
+        <div class="CarreraActual">
+            Carrera: <b>@ViewData["CarreraDelUsuario"]</b>
+        </div>
+
+        <div>
+            <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li id="m1">@Html.ActionLink("Cerrar Sesion", "Index", "Login")</li>
+                    <li id="m3">@Html.ActionLink("Perfil General", "General", "Login")</li>
+                    <li id="m2">@Html.ActionLink("Cambiar Contraseña", "contrasena", "Login")</li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h2>Perfil Privado</h2>
+
+<h3>Notas: </h3>
+
+@foreach (var item in Model)
+{
+    <div class="fila">
+        <div class="celda">
+            @Html.DisplayFor(modelItem => item.Asignaturas.Nombre)
+        </div>
+        <div class="celda">
+            Nota 1: @Html.DisplayFor(modelItem => item.Nota1)
+        </div>
+        <div class="celda">
+            Nota 2: @Html.DisplayFor(modelItem => item.Nota2)
+        </div>
+        <div class="celda">
+            Nota 3: @Html.DisplayFor(modelItem => item.Nota3)
+        </div>
+        <div class="celda">
+            Nota 4: @Html.DisplayFor(modelItem => item.Nota4)
+        </div>
+        <div class="celda">
+            Nota 5: @Html.DisplayFor(modelItem => item.Nota5)
+        </div>
+
+
+    </div>
+}
+<h3>Horario: </h3>
+
+<div>
+
+   <table class="table">
+       <tr>
+           <th>Horas</th>
+           <th>Lunes</th>
+           <th>Martes</th>
+           <th>Miercoles</th>
+           <th>Jueves</th>
+           <th>Viernes</th>
+       </tr>
+@foreach (var item in ViewBag.ListCalendario)
+{
+       <tr>
+           <td>@item[0]</td>
+           <td>@item[1]</td>
+           <td>@item[2]</td>
+           <td>@item[3]</td>
+           <td>@item[4]</td>
+           <td>@item[5]</td>
+
+       </tr>
+}
+    </table>
+
+</div>
+
+
+
+    <style>
+        table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+              }
+
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+           }
+
+   tr:nth-child(even) {
+    background-color: #dddddd;
+                      }
+
+     .UsuarioActual {
+        float:right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+         .CarreraActual {
+        float:right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 10px;
+        padding-left: 80px;
+
+    
+    }
+
+        .fila {
+            overflow: hidden;
+            margin-top: 0.75em;
+        }
+
+        .celda {
+            padding: 0.25em 2em 0.25em .5em;
+            border: 0 none;
+            width: 100px;
+            height: 20px;
+            float: left;
+            border: solid;
+        }
+
+        .celda2 {
+            padding: 0.25em 2em 0.25em .5em;
+            border: 0 none;
+            width: 100px;
+            height: 20px;
+            float: left;
+            border: solid;
+            text-align: center;
+        }
+
+        .wrappr {
+            background-color: #7ac0da;
+            background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+            background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+            background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+            background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+            background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+            color: #3e5667;
+            padding: 20px 40px 30px 40px;
+        }
+    </style>
+
+

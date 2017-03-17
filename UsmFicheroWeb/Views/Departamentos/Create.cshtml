@@ -1,0 +1,54 @@
+﻿@model UsmFicheroWeb.Departamentos
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Crear Departamento";
+}
+
+<h2>Crear Departamento</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Departamentos</legend>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.IdDepartamento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdDepartamento)
+            @Html.ValidationMessageFor(model => model.IdDepartamento)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RutJefeDepto)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RutJefeDepto)
+            @Html.ValidationMessageFor(model => model.RutJefeDepto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NombreDepartamento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NombreDepartamento)
+            @Html.ValidationMessageFor(model => model.NombreDepartamento)
+        </div>
+
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

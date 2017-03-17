@@ -1,0 +1,130 @@
+﻿@model UsmFicheroWeb.Usuarios
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Nuevo Usuario";
+}
+
+<h2>Agregar Nuevo Usuario</h2>
+
+@using (Html.BeginForm("Create","Usuarios", FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Usuarios</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rut)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rut, new { @id = "p1" }) @Html.EditorFor(model => model.Dv, new { style = "width:50px;", @id= "p2" })
+            @Html.ValidationMessageFor(model => model.Rut) @Html.ValidationMessageFor(model => model.Dv)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Dv)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Dv)
+            @Html.ValidationMessageFor(model => model.Dv)
+        </div>*@
+
+        <div class="editor-label">
+            @*@Html.LabelFor(model => model.TipoUser)*@
+            Tipo de Usuario
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.TipoUser)*@
+            @*@Html.ValidationMessageFor(model => model.TipoUser)*@
+            @Html.DropDownList("tipoUser", new List<SelectListItem>
+            {
+              new SelectListItem{ Text = "Alumno", Value = "1" },
+              new SelectListItem{ Text = "Profesor", Value = "2" },
+              new SelectListItem{ Text = "Administrador", Value = "3" }
+            }, new { onchange = "getAlldata()" })
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nombre)
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Apellidos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Apellidos)
+            @Html.ValidationMessageFor(model => model.Apellidos)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fono)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fono)
+            @Html.ValidationMessageFor(model => model.Fono)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contraseña)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Contraseña)
+            @Html.ValidationMessageFor(model => model.Contraseña)
+        </div>
+
+        <div class="editor-label">
+            Carrera
+        </div>
+        <div class="editor-field">
+            @*@Html.EditorFor(model => model.IdCarrera)*@
+
+            @Html.DropDownList("IdCarrera", ViewBag.ListCarreras as SelectList, "Elija una carrera si es profesor o alumno. ",
+                                       new { onchange = "getAlldata()" })
+            @Html.ValidationMessageFor(model => model.IdCarrera)
+
+            @*@Html.DropDownList("Carre", null, new { onchange = "getAlldata()" })*@ @*esto es un ejemplo no tomar en consideracion*@
+
+
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.IdNoticias)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdNoticias)
+            @Html.ValidationMessageFor(model => model.IdNoticias)
+        </div>*@
+        <div>
+            Subir foto del Usuario
+        </div>
+        <div>
+            <input type="file" name="file" />
+        </div>
+        
+
+        <p>
+            <input type="submit" value="Crear" id="eli" />
+        </p>
+    </fieldset>
+}
+
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/jscript">
+        $('#eli').click(function () {
+            alert('En caso de que el RUT no sea valido o los datos seas mayor 20 digitos, este no se GRABARA!!');
+
+        })
+
+        </script>
+}

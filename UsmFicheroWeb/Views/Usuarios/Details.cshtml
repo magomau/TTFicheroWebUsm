@@ -1,0 +1,78 @@
+﻿@model UsmFicheroWeb.Usuarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Usuarios</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Rut)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rut)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Dv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Dv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TipoUser)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoUser)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Apellidos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Apellidos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Contraseña)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contraseña)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdNoticias)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdNoticias)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

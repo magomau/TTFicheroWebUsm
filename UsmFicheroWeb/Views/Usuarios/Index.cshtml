@@ -1,0 +1,221 @@
+﻿@model IEnumerable<UsmFicheroWeb.Usuarios>
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Inicio Usuarios";
+}
+
+
+<header>
+    <div class="wrappr">
+        <div class="UsuarioActual">
+            Administrador:  <b>@ViewData["UsuarioActualNombre"]</b>
+        </div>
+        <div>
+            <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li id="m1">@Html.ActionLink("Cerrar Sesion", "Index", "Login")</li>
+                    @*<li id="m2">@Html.ActionLink("Perfil Privado", "Privado", "Login")</li>
+                        <li id="m3">@Html.ActionLink("Perfil General", "General", "Login")</li>*@
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<h2>Administración</h2>
+<style>
+    .fila {
+        overflow: hidden;
+    }
+
+    .UsuarioActual {
+        float:right;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+    }
+
+    .celda {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 50px;
+        float: left;
+        border: solid;
+    }
+
+    .celda2 {
+        padding: 0.25em 2em 0.25em .5em;
+        border: 0 none;
+        width: 100px;
+        height: 20px;
+        float: left;
+        border: solid;
+        text-align: center;
+    }
+
+    .wrappr {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+    .boto {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #558866;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  height: 50;
+}
+
+   .botom {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #558866;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 50px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  height: 25;
+}
+
+.boto span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.boto span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.boto:hover span {
+  padding-right: 25px;
+}
+
+.boto:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.passw:after {
+    content : "*"
+             }
+</style>
+
+
+<p class="btn btn-danger">
+    @Html.ActionLink("Crear nuevo Usuario", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Rut
+        </th>
+        <th>
+            
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Fono
+        </th>
+        <th style="display:block">
+            Contraseñas    
+            @*@Html.DisplayNameFor(model => model.Contraseña)*@
+        </th>
+        <th>
+            Carrera
+        </th>
+        <th style ="display:none" class="passw">
+            @Html.DisplayNameFor(model => model.IdNoticias)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td >
+            @Html.DisplayFor(modelItem => item.Rut, new { @id = "rut"})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fono)
+        </td>
+        <td style ="display:block">
+            ********
+            @*@Html.DisplayFor(modelItem => item.Contraseña)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdCarrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdNoticias)
+        </td>
+        <td >
+            @Html.ActionLink("Modificar", "Edit", new { id = item.Rut }) |
+            @*@Html.ActionLink("Ver", "Details", new { id = item.Rut }) |*@
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Rut }, new { @id = "eli"})
+        </td>
+    </tr>
+}
+
+</table>
+<p class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index", "Adminstrador")
+    @*<input onclick="location.href='@Url.Action("Regresar", "Index", "Adminstrador")' class=" boto" type="submit" value="Regresar" />*@
+</p>
+
+@section Scripts{
+<script type="text/jscript">
+   
+</script>   
+
+
+    }

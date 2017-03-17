@@ -1,0 +1,42 @@
+﻿@model UsmFicheroWeb.Salas
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Eliminar Salas";
+}
+
+<h2>Eliminar Salas</h2>
+
+<h3>Estas seguiro de eliminar la Sala?</h3>
+<fieldset>
+    <legend>Salas</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodSala)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodSala)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Edificios.CodEdificios)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Edificios.CodEdificios)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxAlumnos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxAlumnos)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p class="btn btn-danger">
+        <input type="submit" value="Eliminar" /> |
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+}

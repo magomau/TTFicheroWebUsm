@@ -1,0 +1,163 @@
+﻿@model UsmFicheroWeb.Usuarios
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Modificar Contraseña";
+}
+
+<h2>Contraseña</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Usuarios</legend>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.Rut)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.TextBoxFor(model => model.Rut, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Rut)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.Dv)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.TextBoxFor(model => model.Dv, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Dv)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.TipoUser)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.TextBoxFor(model => model.TipoUser, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.TipoUser)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.Nombre)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.Nombre, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Nombre)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.Apellidos)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.Apellidos, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Apellidos)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.Fono)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.Fono)
+            @Html.ValidationMessageFor(model => model.Fono)
+        </div>
+
+        @*<div style="display:block"> "block" para mostrar y "none" para esconder
+             @Html.EditorFor(model => model.Contraseña, new { @id="p3"})
+             @Html.ValidationMessageFor(model => model.Contraseña)
+        </div>*@
+
+        @*---FIN DE LOS CAMPOS INVISIBLES---*@
+
+        <div class="editor-label">
+            Ingrese Contraseña actual:
+        </div>
+        <div class="editor-field">
+            <input id="Password" name="Password" type="password" value="" />
+        </div>
+        @*------------*@
+
+        <div class="editor-label">
+            Nueva Contraseña:  @*@Html.LabelFor(model => model.Contraseña)*@
+        </div>
+
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Contraseña, new { @id = "p1" })
+            @Html.ValidationMessageFor(model => model.Contraseña)
+        </div>
+
+        <div class="editor-label">
+            Repita Contraseña:
+        </div>
+        <div>
+            @Html.PasswordFor(model => model.Contraseña, new { @id = "p2" })
+            @*<input id="Password" name="Password2" type="password" value="" />*@
+        </div>
+        <div style="visibility:hidden" id="msgerror">
+            Las contraseñas no coinciden, verifique para poder continuar.
+        </div>
+
+        @*---CAMPOS INVISIBLES QUE NO SE OCUPAN---*@
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.IdCarrera)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.IdCarrera)
+            @Html.ValidationMessageFor(model => model.IdCarrera)
+        </div>
+
+        <div class="editor-label" style="display:none">
+            @Html.LabelFor(model => model.IdNoticias)
+        </div>
+        <div class="editor-field" style="display:none">
+            @Html.EditorFor(model => model.IdNoticias)
+            @Html.ValidationMessageFor(model => model.IdNoticias)
+        </div>
+
+        @*---FIN DE LOS CAMPOS INVISIBLES---*@
+
+        <p>
+            <input type="submit" value="Save" id="save" />
+        </p>
+    </fieldset>
+}
+
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "GeneralProfe")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/jscript">
+    $('#p1,#p2').keyup(function () {
+        textbox1 = document.getElementById('p1');
+        textbox2 = document.getElementById('p2');
+
+        if ($('#p1').val() != $('#p2').val()) {
+            //alert('No son iguales');
+            document.getElementById('save').disabled = true;
+            textbox1.style.backgroundColor = 'yellow';
+            textbox2.style.backgroundColor = 'yellow';
+            document.getElementById('msgerror').style.visibility = "visible";
+
+        }
+        else {
+            // alert('son iguales');
+            document.getElementById('msgerror').style.visibility = "hidden";
+            textbox1.style.backgroundColor = 'green';
+            textbox2.style.backgroundColor = 'green';
+            document.getElementById('save').disabled = false;
+        }
+    })
+
+    $('#save').click(function () {
+        if (@ViewData["XXX"] != $('#Password').val()) {
+            alert('No es la clave actual');
+            document.getElementById('save').disabled = false;
+        }
+    })
+</script>   
+}

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsmFicheroWeb", "UsmFicheroWeb\UsmFicheroWeb.csproj", "{7BBEE673-C4A4-4C2A-B200-B9F3DC78A7BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaBDweb", "BibliotecaBDweb\BibliotecaBDweb.csproj", "{0B9F9FBA-DFB0-497E-BA29-2C6024ED478D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BBEE673-C4A4-4C2A-B200-B9F3DC78A7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BBEE673-C4A4-4C2A-B200-B9F3DC78A7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BBEE673-C4A4-4C2A-B200-B9F3DC78A7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BBEE673-C4A4-4C2A-B200-B9F3DC78A7BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9F9FBA-DFB0-497E-BA29-2C6024ED478D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9F9FBA-DFB0-497E-BA29-2C6024ED478D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9F9FBA-DFB0-497E-BA29-2C6024ED478D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9F9FBA-DFB0-497E-BA29-2C6024ED478D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

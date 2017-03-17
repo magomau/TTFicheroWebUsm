@@ -1,0 +1,36 @@
+﻿@model UsmFicheroWeb.Salas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Salas</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CodSala)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CodSala)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Edificios.CodEdificios)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Edificios.CodEdificios)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxAlumnos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxAlumnos)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

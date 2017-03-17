@@ -1,0 +1,352 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model UsmFicheroWeb.Usuarios
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<style>
+
+    .fila {
+        overflow: hidden;
+        margin-top: 0.75em;
+    }
+
+    .celda {
+        padding: 0.25em 2em 0.25em 0em;
+        border: 0 none;
+        width: 150px;
+        float: left;
+        overflow: hidden;
+    }
+
+    .celda2 {
+        padding: 0.25em 2em 0.25em 0em;
+        border: 0 none;
+        width: 20px;
+        float: left;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .celda3 {
+        padding: 0.5em 0em 0.25em 0em;
+        border: 0 none;
+        width: 20px;
+        float: left;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .wrappr {
+        background-color: #7ac0da;
+        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
+        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
+        color: #3e5667;
+        padding: 20px 40px 30px 40px;
+    }
+
+    .button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;	
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #665CF0;
+  border: none;
+  box-shadow: 0 9px #999;
+  transition: all 0.5s;
+  cursor: pointer;
+  width:200px;
+}
+    .button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .button:hover {background-color: #3e0e41}
+    .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+    .form-signin {
+    max-width: 280px;
+    padding: 15px;
+    margin: 0 auto;
+      margin-top:50px;
+  }
+
+    body {
+        background-color: #444;
+        background: url(../../Fotos/fondoAzul.jpg);
+        
+    }
+    .form-signin input[type="text"] {
+        margin-bottom: 5px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .form-signin .form-control {
+        position: relative;
+        font-size: 16px;
+        font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        height: auto;
+        padding: 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .vertical-offset-100 {
+        padding-top: 100px;
+    }
+    .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    }
+    .panel {
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    width: 380px;
+    }
+  
+</style>
+<head>
+</head>
+<body>
+    @*<header>
+        <div class="wrappr">
+            <div>
+                <p class="site-title">@Html.ActionLink("Fichero Usm", "Index", "Home", new { @style = "color:white" })</p>
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li id="m1"></li>
+                        <li id="m2"></li>
+                        <li id="m3"></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>*@
+    <div>
+        @*Viejo login*@
+        @*
+            <div class="form_sigin">
+                <h2 >Ingrese Rut y Contraseña</h2>
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red">
+                            @ViewBag.Message
+                        </div>
+                    }
+
+                    <div class="fila">
+                        <div class="celda">
+                           Tipo de Usuario
+                        </div>
+                        <div class="celda">
+                            @Html.DropDownList("TipoUsuario", new List<SelectListItem>
+                          {
+                          new SelectListItem{ Text = "Predeterminado", Value = "0" },
+                          new SelectListItem{ Text = "Alumno", Value = "1" },
+                          new SelectListItem{ Text = "Profesor", Value = "2" },
+                          new SelectListItem{ Text = "Administrador", Value = "3" },
+                        }, new { onchange = "getAlldata()" })
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda">
+                            @Html.LabelFor(a => a.Rut)
+                        </div>
+                        <div class="celda">
+                            @Html.TextBoxFor(a => a.Rut)
+                        </div>
+                        <div class="celda3">
+                            <b>-</b>
+                        </div>
+                        <div class="celda2">
+                            @Html.TextBoxFor(a => a.Dv)
+                        </div>
+                        <div class="celda">
+                            @Html.ValidationMessageFor(a => a.Rut)
+                            @Html.ValidationMessageFor(a => a.Dv)
+                        </div>
+                    </div>
+                    <div class="fila">
+                        <div class="celda">
+                            @Html.LabelFor(a => a.Contraseña)
+                        </div>
+                        <div class="celda">
+                            @Html.PasswordFor(a => a.Contraseña)
+                        </div>
+                        <div class="celda">
+                            @Html.ValidationMessageFor(a => a.Contraseña)
+                        </div>
+                    </div>
+
+                    <div class="fila">
+                        <div class="celda">
+
+                        </div>
+                        <div class="celda">
+                            <input class="btn btn-primary" type="submit" value="Ingresar" />
+                        </div>
+                        <div class="celda">
+
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+
+        *@
+    </div>
+
+    <div class="container">
+        <div class="row vertical-offset-100">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row-fluid user-row">
+                            <img src="~/Fotos/logoUsm.jpg" class="img-responsive" alt="Conxole Admin" />
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h2>Ingrese Rut y Contraseña</h2>
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            if (@ViewBag.Message != null)
+                            {
+                                <div style="border: 1px solid red">
+                                    @ViewBag.Message
+                                </div>
+                            }
+
+                            <div class="fila">
+                                <div class="celda">
+                                    Tipo de Usuario
+                                </div>
+                                <div class="celda">
+                                    @Html.DropDownList("TipoUsuario", new List<SelectListItem>
+              {
+              new SelectListItem{ Text = "Predeterminado", Value = "0" },
+              new SelectListItem{ Text = "Alumno", Value = "1" },
+              new SelectListItem{ Text = "Profesor", Value = "2" },
+              new SelectListItem{ Text = "Administrador", Value = "3" },
+            }, new { onchange = "getAlldata()" })
+                                </div>
+                            </div>
+                            <div class="fila">
+                                <div class="celda">
+                                    @Html.LabelFor(a => a.Rut)
+                                </div>
+                                <div class="celda">
+                                    @Html.TextBoxFor(a => a.Rut)
+                                </div>
+                                <div class="celda3">
+                                    <b>-</b>
+                                </div>
+                                <div class="celda2">
+                                    @Html.TextBoxFor(a => a.Dv)
+                                </div>
+                                <div class="celda">
+                                    @Html.ValidationMessageFor(a => a.Rut)
+                                    @Html.ValidationMessageFor(a => a.Dv)
+                                </div>
+                            </div>
+                            <div class="fila">
+                                <div class="celda">
+                                    @Html.LabelFor(a => a.Contraseña)
+                                </div>
+                                <div class="celda">
+                                    @Html.PasswordFor(a => a.Contraseña)
+                                </div>
+                                <div class="celda">
+                                    @Html.ValidationMessageFor(a => a.Contraseña)
+                                </div>
+                            </div>
+
+                            <div class="fila">
+                                <div class="celda">
+
+                                </div>
+                                <div class="celda">
+                                    <input class="btn btn-primary" type="submit" value="Ingresar" />
+                                </div>
+                                <div class="celda">
+
+                                </div>
+                            </div>
+
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+        @* This below line is for create javascript section *@
+
+@section Scripts{
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/jscript">
+     $(document).ready(function() {
+    $(document).mousemove(function(event) {
+        TweenLite.to($("body"),
+        .5, {
+            css: {
+                backgroundPosition: "" + parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / '12') + "px, " + parseInt(event.pageX / '15') + "px " + parseInt(event.pageY / '15') + "px, " + parseInt(event.pageX / '30') + "px " + parseInt(event.pageY / '30') + "px",
+            	"background-position": parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / 12) + "px, " + parseInt(event.pageX / 15) + "px " + parseInt(event.pageY / 15) + "px, " + parseInt(event.pageX / 30) + "px " + parseInt(event.pageY / 30) + "px"
+            }
+        })
+    })
+})
+</script> 
+}

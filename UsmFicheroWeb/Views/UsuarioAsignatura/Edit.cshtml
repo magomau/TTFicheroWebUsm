@@ -1,0 +1,126 @@
+﻿@model UsmFicheroWeb.UsuarioAsignatura
+@Styles.Render("~/Content/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@{
+    ViewBag.Title = "Editar asginaturas y notas";
+}
+
+<h2>Editar asginaturas y notas</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UsuarioAsignatura</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RutUsuario, "Usuarios")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RutUsuario", String.Empty)
+            @Html.ValidationMessageFor(model => model.RutUsuario)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CodAsignatura, "Asignaturas")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CodAsignatura", String.Empty)
+            @Html.ValidationMessageFor(model => model.CodAsignatura)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Año)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Año)
+            @Html.ValidationMessageFor(model => model.Año)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Semestre)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Semestre)
+            @Html.ValidationMessageFor(model => model.Semestre)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Estado)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Estado)
+            @Html.ValidationMessageFor(model => model.Estado)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nota1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nota1)
+            @Html.ValidationMessageFor(model => model.Nota1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nota2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nota2)
+            @Html.ValidationMessageFor(model => model.Nota2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nota3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nota3)
+            @Html.ValidationMessageFor(model => model.Nota3)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nota4)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nota4)
+            @Html.ValidationMessageFor(model => model.Nota4)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nota5)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nota5)
+            @Html.ValidationMessageFor(model => model.Nota5)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Paralelo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Paralelo)
+            @Html.ValidationMessageFor(model => model.Paralelo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RutProfesor)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RutProfesor", String.Empty)
+            @Html.ValidationMessageFor(model => model.RutProfesor)
+        </div>
+
+        <p>
+            <input type="submit" value="Editar" />
+        </p>
+    </fieldset>
+}
+
+<div class="btn btn-danger">
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
